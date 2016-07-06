@@ -37,8 +37,7 @@ define([
 
     componentDidMount() {
       Store.subscribe(() => {
-        const { list, filter, sortBy, sortDirection, watchlist, pollingInterval } = Store.getState();
-        this.setState(objectWithoutUndefined({ list, filter, sortBy, sortDirection, watchlist, pollingInterval }));
+        this.setState(Store.getState());
       });
       this.poll();
     }

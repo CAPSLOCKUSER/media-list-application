@@ -5,6 +5,12 @@ define([
 
   return getInitialState => (state = getInitialState(), action = {}) => {
     switch (action.type) {
+      case at.SET_BROWSE_MODE:
+        return {
+          ...state,
+          browseMode: action.browseMode,
+        };
+
       case at.UPDATE_MEDIA_LIST:
         return {
           ...state,

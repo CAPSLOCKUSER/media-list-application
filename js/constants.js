@@ -2,6 +2,7 @@ define(['lib/Utils'], ({ mirror }) => {
   const SORTABLE_PROPERTIES = ['id', 'title', 'description', 'viewers'];
   const FILTER_TYPES = ['none', 'live-channel', 'offline-channel', 'video'];
   const ACTION_TYPES = mirror({
+    'SET_BROWSE_MODE': null,
     'UPDATE_MEDIA_LIST': null,
     'FILTER': null,
     'SORT': null,
