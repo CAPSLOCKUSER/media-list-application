@@ -3,8 +3,21 @@
   "version": "1.0.0",
   "description": "This is a flux app with jsx and virtual dom without React",
   "main": "index.html",
+  "watch": {
+    "build:js-dev": "js/**/*.js",
+    "build:less-dev": "less/main.less"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rimraf build && npm run build:js && npm run build:less",
+    "build:js": "babel js -d build",
+    "build:js-dev": "babel js -d build --source-maps",
+    "build:less": "lessc less/main.less build/style.css && npm run autoprefix",
+    "build:less-dev": "lessc --source-map less/main.less build/style.css && npm run autoprefix",
+    "autoprefix": "autoprefixer-cli build/style.css",
+    "postinstall": "npm run build",
+    "start": "open index.html",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "npm-watch"
   },
   "repository": {
     "type": "git",
@@ -15,5 +28,17 @@
   "bugs": {
     "url": "https://github.com/CAPSLOCKUSER/media-list-application/issues"
   },
-  "homepage": "https://github.com/CAPSLOCKUSER/media-list-application#readme"
+  "homepage": "https://github.com/CAPSLOCKUSER/media-list-application#readme",
+  "devDependencies": {
+    "autoprefixer-cli": "1.0.0",
+    "babel-cli": "6.10.1",
+    "babel-plugin-array-includes": "2.0.3",
+    "babel-plugin-transform-class-properties": "6.10.2",
+    "babel-plugin-transform-object-rest-spread": "6.8.0",
+    "babel-plugin-transform-react-jsx": "6.8.0",
+    "babel-preset-es2015": "6.9.0",
+    "less": "2.7.1",
+    "npm-watch": "0.1.4",
+    "rimraf": "2.5.3"
+  }
 }
