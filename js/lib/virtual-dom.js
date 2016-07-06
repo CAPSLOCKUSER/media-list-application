@@ -3,7 +3,7 @@
   Licence is WTFPL (http://www.wtfpl.net/)
 */
 
-define(() => {
+define(['lib/utils'], ({ objectWithoutUndefined }) => {
   function vDom(type, props, ...children) {
     const isChildrenInArray = children.length === 1 && Array.isArray(children[0]);
 
@@ -124,7 +124,8 @@ define(() => {
 
   class Component {
     constructor(props) {
-      this.props = props;
+      const defaultProps = Object.getPrototypeOf(this).constructor.defaultProps || {};
+      this.props = { ...defaultProps, ...objectWithoutUndefined(props) };
       this.state = this.state || {};
       this.$dom = null;
       this.vTree = null;
