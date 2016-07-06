@@ -8,6 +8,13 @@ define([
 
   class BrowsePanel extends VirtualDom.Component {
 
+    constructor(props) {
+      super(props);
+      this.state = {
+        browseMode: props.browsingData.browseMode,
+      };
+    }
+
     componentDidUpdate() {
       const $this = $(this.$dom);
       $this.find('ul a.menu-home').on('click', () => {
@@ -25,10 +32,13 @@ define([
       });
     }
 
+    shouldComponentUpdate(newProps, newState) {
+      return newState.browseMode !== this.state.browseMode;
+    }
+
     render() {
-      console.log('render');
-      const { sortBy, sortDirection, filter, browseMode } = this.props.browsingData;
-      const isWatchlist = (this.state.browseMode || browseMode) === 'watchlist';
+      const { sortBy, sortDirection, filter } = this.props.browsingData;
+      const isWatchlist = this.state.browseMode === 'watchlist';
       return (
         <div>
           <ul>
@@ -40,7 +50,7 @@ define([
               <Sorter sortBy={sortBy} sortDirection={sortDirection}/>
               <Filter filter={ filter } />
             </div>
-            : null}
+          : null}
         </div>
       );
     }
