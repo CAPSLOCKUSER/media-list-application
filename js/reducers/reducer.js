@@ -12,10 +12,12 @@ define([
         };
 
       case at.UPDATE_MEDIA_LIST:
+        const availableIDs = action.list.map(({ id }) => id);
+        const watchlist = (state.watchlist || []).filter(({ id }) => availableIDs.includes(id));
         return {
           ...state,
-          //list: removeFromArrayByID(state.list, action.item.id).concat([action.item]),
           list: action.list,
+          watchlist,
         };
 
       case at.FILTER:
