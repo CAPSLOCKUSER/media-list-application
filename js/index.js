@@ -1,5 +1,3 @@
-require([], () => {
-  console.log('hello');
-  class Foo {}
-  window.Foo = Foo;
+require(['lib/virtual-dom', 'components/App'], (VirtualDom, App) => {
+  VirtualDom.register(document.body, <App />);
 });
