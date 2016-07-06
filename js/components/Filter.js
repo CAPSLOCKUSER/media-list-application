@@ -8,6 +8,10 @@ define([
 
   class Filter extends VirtualDom.Component {
 
+    static defaultProps = {
+      filter: 'none',
+    };
+
     componentDidUpdate() {
       $(this.$dom).on('change', event => {
         const value = $(event.currentTarget).find('input:checked').val();

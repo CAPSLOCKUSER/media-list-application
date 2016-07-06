@@ -7,6 +7,12 @@ define([
 ], ({ SORTABLE_PROPERTIES }, VirtualDom, Store, { sortMediaList }, { capitalize }) => {
 
   class Sorter extends VirtualDom.Component {
+
+    static defaultProps = {
+      sortBy: 'id',
+      sortDirection: 'asc',
+    };
+
     componentDidUpdate() {
       const $this = $(this.$dom);
       $this.on('change', () => {
