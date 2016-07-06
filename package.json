@@ -1,0 +1,19 @@
+{
+  "name": "media-list-application",
+  "version": "1.0.0",
+  "description": "This is a flux app with jsx and virtual dom without React",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CAPSLOCKUSER/media-list-application.git"
+  },
+  "author": "Miklos Megyes <m.miklos05@gmail.com> (https://github.com/CAPSLOCKUSER)",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/CAPSLOCKUSER/media-list-application/issues"
+  },
+  "homepage": "https://github.com/CAPSLOCKUSER/media-list-application#readme"
+}
