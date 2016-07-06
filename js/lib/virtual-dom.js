@@ -62,7 +62,7 @@ define(['lib/utils'], ({ objectWithoutUndefined }) => {
   function manifestComponent(vNode) {
     const { props, componentInstance } = vNode;
     if (componentInstance.isMounted) {
-      componentInstance.update(props);
+      componentInstance.update(props, componentInstance.state);
     } else {
       componentInstance.mount();
     }
@@ -137,16 +137,17 @@ define(['lib/utils'], ({ objectWithoutUndefined }) => {
     shouldComponentUpdate() { return true; }
 
     setState(data) {
-      this.state = {
+      const newState = {
         ...this.state,
         ...data,
       };
-      this.update();
+      this.update(this.props, newState);
     }
 
-    update(props) {
-      const shouldUpdate = this.shouldComponentUpdate(props);
-      if (props) this.props = props;
+    update(newProps, newState) {
+      const shouldUpdate = this.shouldComponentUpdate(newProps, newState);
+      this.props = newProps;
+      this.state = newState;
       if (!shouldUpdate) return;
 
       const vNode = this.render();
