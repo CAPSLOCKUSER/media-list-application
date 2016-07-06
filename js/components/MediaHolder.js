@@ -4,7 +4,8 @@ define([
   'stores/store',
   'actions/media-list',
   'lib/utils',
-], (VirtualDom, MediaList, Store, { addToMediaList }, { objectWithoutUndefined }) => {
+  'constants',
+], (VirtualDom, MediaList, Store, { addToMediaList }, { objectWithoutUndefined }, { DEFAULT_POLLING }) => {
 
   class MediaHolder extends VirtualDom.Component {
 
@@ -14,6 +15,7 @@ define([
       sortBy: 'id',
       sortDirection: 'asc',
       watchlist: [],
+      pollingInterval: DEFAULT_POLLING,
     };
 
     poll = () => {
@@ -29,14 +31,14 @@ define([
           console.log('ajax failed', msg); // eslint-disable-line no-console
         })
         .always(() => {
-          setTimeout(this.poll, 10000);
+          setTimeout(this.poll, this.state.pollingInterval);
         });
     };
 
     componentDidMount() {
       Store.subscribe(() => {
-        const { list, filter, sortBy, sortDirection, watchlist } = Store.getState();
-        this.setState(objectWithoutUndefined({ list, filter, sortBy, sortDirection, watchlist }));
+        const { list, filter, sortBy, sortDirection, watchlist, pollingInterval } = Store.getState();
+        this.setState(objectWithoutUndefined({ list, filter, sortBy, sortDirection, watchlist, pollingInterval }));
       });
       this.poll();
     }

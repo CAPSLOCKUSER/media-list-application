@@ -41,7 +41,7 @@ define([
       case at.SET_POLL_INTERVAL:
         return {
           ...state,
-          interval: action.interval,
+          pollingInterval: action.pollingInterval,
         };
 
       default:

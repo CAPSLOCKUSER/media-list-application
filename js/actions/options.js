@@ -1,8 +1,8 @@
 define(['constants'], ({ ACTION_TYPES }) => {
-  function setPollInterval(interval) {
+  function setPollInterval(pollingInterval) {
     return {
       type: ACTION_TYPES.SET_POLL_INTERVAL,
-      interval,
+      pollingInterval,
     };
   }
 
