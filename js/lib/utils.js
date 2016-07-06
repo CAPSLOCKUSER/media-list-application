@@ -30,11 +30,23 @@ define(() => {
     return text.split('-').map(capitalize).join(' ');
   }
 
+  function throttle(fn, minTime = 1000) {
+    let called = null;
+    return (...data) => {
+      const now = new Date().getDate();
+      if (!called || called + minTime < now) {
+        called = now;
+        fn.apply(null, data);
+      }
+    }
+  }
+
   return {
     mirror,
     removeFromArrayByID,
     objectWithoutUndefined,
     capitalize,
     humanize,
+    throttle,
   };
 });
