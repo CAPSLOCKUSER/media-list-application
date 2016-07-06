@@ -10,15 +10,15 @@ define([
 
     componentDidUpdate() {
       const $this = $(this.$dom);
-      $this.find('ul a.menu-home').on('click', event => {
-        //$this.find('> div').show();
+      $this.find('ul a.menu-home').on('click', () => {
         Store.dispatch(setToNormalBrowse());
       });
-      $this.find('ul a.menu-watchlist').on('click', event => {
-        //$this.find('> div').hide();
+      $this.find('ul a.menu-watchlist').on('click', () => {
         Store.dispatch(setToWatchlist());
       });
+    }
 
+    componentDidMount() {
       Store.subscribe(() => {
         const { browseMode } = Store.getState();
         this.setState({ browseMode });
@@ -26,6 +26,7 @@ define([
     }
 
     render() {
+      console.log('render');
       const { sortBy, sortDirection, filter, browseMode } = this.props.browsingData;
       const isWatchlist = (this.state.browseMode || browseMode) === 'watchlist';
       return (
@@ -39,9 +40,9 @@ define([
               <Sorter sortBy={sortBy} sortDirection={sortDirection}/>
               <Filter filter={ filter } />
             </div>
-          : null}
+            : null}
         </div>
-      )
+      );
     }
   }
 
