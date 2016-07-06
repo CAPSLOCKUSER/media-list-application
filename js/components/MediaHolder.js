@@ -18,6 +18,13 @@ define([
       pollingInterval: DEFAULT_POLLING,
     };
 
+    constructor(props) {
+      super(props);
+      this.state = {
+        ...props.appState,
+      }
+    }
+
     poll = () => {
       $.ajax({
           url: this.props.url,

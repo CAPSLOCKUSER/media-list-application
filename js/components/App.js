@@ -8,13 +8,13 @@ define([
 
   class App extends VirtualDom.Component {
     render() {
-      const { pollingInterval, ...browsingData } = Store.getState();
+      const appState = Store.getState();
       return (
         <div class="container">
           <h1>Media list application</h1>
-          <PollingOption pollingInterval={pollingInterval} />
-          <BrowsePanel browsingData={browsingData} />
-          <MediaHolder url={this.props.url} />
+          <PollingOption pollingInterval={appState.pollingInterval} />
+          <BrowsePanel browsingData={appState} />
+          <MediaHolder url={this.props.url} appState={appState} />
         </div>
       );
     }
