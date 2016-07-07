@@ -51,13 +51,14 @@ define([
         .sort(browseMode === 'watchlist' ? sortByWatchlistAddedDate : sortMediaItem)
         .map(item => <MediaItem {...item} watchlist={watchlist} />);
 
-      let content = items;
-      if (items.length === 0) {
-        content = isWatchlist ? 'Your watchlist is empty!' : 'Loading...';
-      }
-
       return (
-        <ul class="media-list">{content}</ul>
+        <ul class="media-list">
+          {items.length === 0 ? (
+            <li class="media-item">
+              {isWatchlist ? 'Your watchlist is empty!' : 'Loading...'}
+            </li>
+          ) : items}
+        </ul>
       );
     }
   }
