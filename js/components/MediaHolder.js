@@ -6,23 +6,28 @@ define([
   'actions/media-list',
   'lib/utils',
   'constants',
-], (VirtualDom, MediaList, ErrorMessage, Store, { addToMediaList }, { DEFAULT_POLLING }) => {
+], (
+  VirtualDom,
+  MediaList,
+  ErrorMessage,
+  Store,
+  { addToMediaList },
+  { objectWithoutUndefined },
+  { DEFAULT_POLLING }
+) => {
 
   class MediaHolder extends VirtualDom.Component {
-
-    state = {
-      list: [],
-      filter: 'none',
-      sortBy: 'id',
-      sortDirection: 'asc',
-      watchlist: [],
-      pollingInterval: DEFAULT_POLLING,
-    };
 
     constructor(props) {
       super(props);
       this.state = {
-        ...props.appState,
+        list: [],
+        filter: 'none',
+        sortBy: 'id',
+        sortDirection: 'asc',
+        watchlist: [],
+        pollingInterval: DEFAULT_POLLING,
+        ...objectWithoutUndefined(props.appState),
       }
     }
 
