@@ -24,4 +24,44 @@
       }
     }
   }
+
+  .presenting-options {
+    h2 {
+      display: inline-block;
+    }
+  }
+
+  .radio-group {
+    input[type="radio"] {
+      display: none;
+
+      &:checked + label {
+        background: @teal;
+        //box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.35);
+      }
+    }
+    label {
+      background: @light;
+      padding: 10px 20px;
+    }
+  }
+
+  .sort-direction {
+    display: inline-block;
+
+    i {
+      margin: 10px 5px;
+      font-size: 140%;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      display: none;
+
+      &:checked + i {
+        color: @teal;
+      }
+    }
+
+  }
 }

@@ -38,7 +38,7 @@ define([
           timeout: 5000,
         })
         .done(response => {
-          console.log('ajax success'/*, response*/); // eslint-disable-line no-console
+          console.log('ajax success', response.length); // eslint-disable-line no-console
           Store.dispatch(addToMediaList(response));
         })
         .fail(() => {

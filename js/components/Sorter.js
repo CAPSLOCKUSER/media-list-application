@@ -37,24 +37,26 @@ define([
           <select name="sort-property" id="sort-property">
             {options}
           </select>
-          <label>
-            <input
-              type="radio"
-              name="sort-direction"
-              value="asc"
-              checked={sortDirection === 'asc'}
-            />
-            Asc
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="sort-direction"
-              value="desc"
-              checked={sortDirection === 'desc'}
-            />
-            Desc
-          </label>
+          <div class="sort-direction">
+            <label>
+              <input
+                type="radio"
+                name="sort-direction"
+                value="asc"
+                checked={sortDirection === 'asc'}
+              />
+              <i class="fa fa-chevron-up" aria-hidden="true" />
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="sort-direction"
+                value="desc"
+                checked={sortDirection === 'desc'}
+              />
+              <i class="fa fa-chevron-down" aria-hidden="true" />
+            </label>
+          </div>
         </form>
       );
     }

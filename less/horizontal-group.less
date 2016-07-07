@@ -1,0 +1,18 @@
+@import "colors.less";
+
+.horizontal-group {
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+  border: 1px solid @grey;
+
+  & > * {
+    display: flex;
+    border: none;
+    border-radius: 0;
+
+    & + & {
+      border-left: 1px solid @grey;
+    }
+  }
+}
