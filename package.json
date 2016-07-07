@@ -4,15 +4,13 @@
   "description": "This is a flux app with jsx and virtual dom without React",
   "main": "index.html",
   "watch": {
-    "build:js-dev": "js/**/*.js",
-    "build:less-dev": "less/main.less"
+    "build:js": "js/**/*.js",
+    "build:less": "less/**/*.less"
   },
   "scripts": {
     "build": "rimraf build && npm run build:js && npm run build:less",
-    "build:js": "babel js -d build",
-    "build:js-dev": "babel js -d build --source-maps",
-    "build:less": "lessc less/main.less build/style.css && npm run autoprefix",
-    "build:less-dev": "lessc --source-map less/main.less build/style.css && npm run autoprefix",
+    "build:js": "babel js -d build --source-maps",
+    "build:less": "lessc --source-map less/main.less build/style.css && npm run autoprefix",
     "autoprefix": "autoprefixer-cli build/style.css",
     "postinstall": "npm run build",
     "start": "open index.html",
