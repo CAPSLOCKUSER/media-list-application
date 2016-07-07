@@ -33,7 +33,7 @@ define([
       ));
       return (
         <form>
-          <h2>Sort</h2>
+          <h3>Sort</h3>
           <select name="sort-property" id="sort-property">
             {options}
           </select>

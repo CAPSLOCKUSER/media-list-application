@@ -38,7 +38,7 @@ define([
       ));
       return (
         <form>
-          <h2>Filter</h2>
+          <h3>Filter</h3>
           <div class="horizontal-group radio-group">{radios}</div>
         </form>
       );
