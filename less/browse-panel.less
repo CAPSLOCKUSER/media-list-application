@@ -1,0 +1,27 @@
+@import "colors.less";
+
+.browse-panel {
+  ul {
+    margin-top: 10px;
+  }
+
+  .menu {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      display: inline-block;
+      width: 80px;
+
+      a {
+        color: @black;
+        text-decoration: none;
+        font-size: 120%;
+
+        &.active, &:hover {
+          border-bottom: 4px solid @teal;
+        }
+      }
+    }
+  }
+}

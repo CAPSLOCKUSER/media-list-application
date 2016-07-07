@@ -1,0 +1,36 @@
+@import "colors.less";
+
+.toggle-settings {
+  font-size: 70%;
+  color: black;
+  margin: 13px 0 0 10px;
+  float: right;
+}
+
+form.options {
+  display: none;
+  background: @teal;
+  overflow: hidden;
+
+  &::before {
+    content: " ";
+    box-shadow: 0 2px 10px -1px rgba(0, 0, 0, 0.5);
+    display: block;
+    height: 5px;
+    position: relative;
+    top: -5px;
+  }
+
+  &::after {
+    content: " ";
+    box-shadow: 0 -2px 10px -1px rgba(0, 0, 0, 0.5);
+    display: block;
+    height: 5px;
+    position: relative;
+    top: 5px;
+  }
+
+  h2 {
+    margin: 0;
+  }
+}

@@ -42,10 +42,10 @@ define([
       const { sortBy, sortDirection, filter } = this.props.browsingData;
       const isWatchlist = this.state.browseMode === 'watchlist';
       return (
-        <div>
-          <ul>
-            <li><a href="#" class="menu-home">Home</a></li>
-            <li><a href="#" class="menu-watchlist">Watchlist</a></li>
+        <div class="browse-panel">
+          <ul class="menu">
+            <li><a href="#" class={"menu-home" + (!isWatchlist ? " active" : "")}>Home</a></li>
+            <li><a href="#" class={"menu-watchlist" + (isWatchlist ? " active" : "")}>Watchlist</a></li>
           </ul>
           {!isWatchlist ?
             <div class="presenting-options">
