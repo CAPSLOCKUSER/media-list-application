@@ -4,18 +4,20 @@ define([
   'stores/store',
   'components/Filter',
   'components/Sorter',
-], (VirtualDom, { setToNormalBrowse, setToWatchlist }, Store, Filter, Sorter) => {
+  'lib/utils',
+], (VirtualDom, MediaListActions, Store, Filter, Sorter, { objectWithoutUndefined }) => {
 
   class BrowsePanel extends VirtualDom.Component {
 
     constructor(props) {
       super(props);
       this.state = {
-        browseMode: props.browsingData.browseMode,
+        ...props.browsingData,
       };
     }
 
     componentDidUpdate() {
+      const { setToNormalBrowse, setToWatchlist } = MediaListActions;
       const $this = $(this.$dom);
       $this.find('ul a.menu-home').on('click', event => {
         event.preventDefault();
@@ -29,8 +31,8 @@ define([
 
     componentDidMount() {
       Store.subscribe(() => {
-        const { browseMode } = Store.getState();
-        this.setState({ browseMode });
+        const { sortBy, sortDirection, filter, browseMode } = Store.getState();
+        this.setState(objectWithoutUndefined({ sortBy, sortDirection, filter, browseMode }));
       });
     }
 
@@ -39,8 +41,8 @@ define([
     }
 
     render() {
-      const { sortBy, sortDirection, filter } = this.props.browsingData;
-      const isWatchlist = this.state.browseMode === 'watchlist';
+      const { sortBy, sortDirection, filter, browseMode } = this.state;
+      const isWatchlist = browseMode === 'watchlist';
       return (
         <div class="browse-panel">
           <ul class="menu">
@@ -50,7 +52,7 @@ define([
           {!isWatchlist ?
             <div class="presenting-options">
               <Sorter sortBy={sortBy} sortDirection={sortDirection}/>
-              <Filter filter={ filter } />
+              <Filter filter={filter} />
             </div>
           : null}
         </div>
