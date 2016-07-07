@@ -33,4 +33,33 @@ form.options {
   h2 {
     margin: 0;
   }
+
+  ul.polling-options {
+    list-style: none;
+    padding-left: 0;
+
+    label {
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      display: none;
+
+      &:checked + label {
+        user-select: none;
+
+        &::before {
+          content: "\f05d";
+          font-family: FontAwesome;
+          margin-right: 10px;
+        }
+      }
+
+      &:not(:checked) + label::before {
+        content: "\f10c";
+        font-family: FontAwesome;
+        margin-right: 10px;
+      }
+    }
+  }
 }

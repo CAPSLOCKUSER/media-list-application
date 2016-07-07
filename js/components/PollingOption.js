@@ -20,7 +20,7 @@ define([
 
     render() {
       const radios = POLLING_OPTION.map(({ interval, name }) => (
-        <div>
+        <li>
           <input
             type="radio"
             name="polling-interval"
@@ -29,13 +29,13 @@ define([
             id={'polling-' + interval}
           />
           <label for={'polling-' + interval}>{name}</label>
-        </div>
+        </li>
       ));
       return (
         <form class="options">
           <div class="container">
             <h2>Polling interval:</h2>
-            <div>{radios}</div>
+            <ul class="polling-options">{radios}</ul>
           </div>
         </form>
       );
