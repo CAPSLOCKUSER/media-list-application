@@ -3,8 +3,9 @@ define([
   'components/MediaHolder',
   'components/PollingOption',
   'components/BrowsePanel',
+  'components/ErrorMessage',
   'stores/store',
-], (VirtualDom, MediaHolder, PollingOption, BrowsePanel, Store) => {
+], (VirtualDom, MediaHolder, PollingOption, BrowsePanel, ErrorMessage, Store) => {
 
   class App extends VirtualDom.Component {
     render() {
@@ -15,6 +16,7 @@ define([
           <PollingOption pollingInterval={appState.pollingInterval} />
           <BrowsePanel browsingData={appState} />
           <MediaHolder url={this.props.url} appState={appState} />
+          <ErrorMessage />
         </div>
       );
     }

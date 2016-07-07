@@ -1,11 +1,12 @@
 define([
   'lib/virtual-dom',
   'components/MediaList',
+  'components/ErrorMessage',
   'stores/store',
   'actions/media-list',
   'lib/utils',
   'constants',
-], (VirtualDom, MediaList, Store, { addToMediaList }, { objectWithoutUndefined }, { DEFAULT_POLLING }) => {
+], (VirtualDom, MediaList, ErrorMessage, Store, { addToMediaList }, { DEFAULT_POLLING }) => {
 
   class MediaHolder extends VirtualDom.Component {
 
@@ -29,13 +30,14 @@ define([
       $.ajax({
           url: this.props.url,
           dataType: 'jsonp',
+          timeout: 5000,
         })
         .done(response => {
-          console.log('ajax success'/*, response*/);
+          console.log('ajax success'/*, response*/); // eslint-disable-line no-console
           Store.dispatch(addToMediaList(response));
         })
-        .fail((msg) => {
-          console.log('ajax failed', msg); // eslint-disable-line no-console
+        .fail(() => {
+          ErrorMessage.showMessage(`Polling error. Will continue.`)
         })
         .always(() => {
           setTimeout(this.poll, this.state.pollingInterval);
