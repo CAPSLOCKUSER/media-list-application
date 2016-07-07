@@ -8,28 +8,73 @@
   border-radius: 4px;
   overflow: hidden;
   border: 1px solid @grey;
+  margin-top: 40px;
 
   .media-item {
-    flex: 0 0 100%;
     padding: 5px 10px;
     background: @light;
     border: none;
     border-radius: 0;
+    position: relative;
 
     h4 {
       margin: 0;
     }
 
+    i.fa {
+      margin-right: 10px;
+    }
+
+    .tags {
+      font-style: italic;
+      color: @grey;
+    }
+
+    .ribbon {
+      width: 105px;
+      height: 110px;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+
+      span {
+        color: @light;
+        text-align: center;
+        transform: rotate(45deg);
+        position: relative;
+        padding: 6px 0px;
+        left: 20px;
+        top: 13px;
+        width: 119px;
+        background: @teal;
+        display: block;
+        font-weight: bold;
+        letter-spacing: 3px;
+      }
+    }
+
+    .viewers {
+      position: absolute;
+      right: 20px;
+      bottom: 40px;
+    }
+
     .watchlist-button {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
 
       &.added {
         background-color: @teal;
         border: none;
       }
     }
-  }
 
-  .media-item + .media-item {
-    border-top: 1px solid @grey;
   }
+}
+
+.media-item + .media-item {
+  border-top: 1px solid @grey;
 }

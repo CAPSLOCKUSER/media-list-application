@@ -41,6 +41,14 @@ define(() => {
     }
   }
 
+  function formatNumber(number) {
+    const chars = number.toString().split('');
+    const mirrorIndex = chars.length - 1;
+    return chars.reduceRight((prev, curr, index) => {
+      return (index - mirrorIndex) % 3 === 0 ? `${curr},${prev}` : `${curr}${prev}`;
+    });
+  }
+
   return {
     mirror,
     removeFromArrayByID,
@@ -48,5 +56,6 @@ define(() => {
     capitalize,
     humanize,
     throttle,
+    formatNumber,
   };
 });
