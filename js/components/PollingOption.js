@@ -32,9 +32,11 @@ define([
         </div>
       ));
       return (
-        <form>
-          <h2>Polling interval:</h2>
-          <div>{radios}</div>
+        <form class="options">
+          <div class="container">
+            <h2>Polling interval:</h2>
+            <div>{radios}</div>
+          </div>
         </form>
       );
     }

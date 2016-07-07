@@ -17,10 +17,12 @@ define([
 
     componentDidUpdate() {
       const $this = $(this.$dom);
-      $this.find('ul a.menu-home').on('click', () => {
+      $this.find('ul a.menu-home').on('click', event => {
+        event.preventDefault();
         Store.dispatch(setToNormalBrowse());
       });
-      $this.find('ul a.menu-watchlist').on('click', () => {
+      $this.find('ul a.menu-watchlist').on('click', event => {
+        event.preventDefault();
         Store.dispatch(setToWatchlist());
       });
     }

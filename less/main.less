@@ -1,5 +1,20 @@
 body {
-  background: #ccc;
+  background: #f0f0f0;
+  font-size: 17px;
+  line-height: 1.4;
+  font-family: 'Jaldi', sans-serif;
+  margin: 0;
+  padding: 0;
+
+  h1.title {
+    margin: 18px 0 9px;
+  }
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5px 20px;
 }
 
 .error-message {
@@ -9,8 +24,95 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: red;
+  background: #FF4136;
   color: white;
   text-align: center;
   transition: height 0.5s ease-out;
+}
+
+select {
+  margin: 10px;
+  border: 1px solid #CAD0D2;
+  border-radius: 4px;
+  width: 150px;
+  padding: 5px 35px 5px 5px;
+  font-size: 16px;
+  height: 34px;
+  appearance: none;
+  background: #eee;
+}
+
+form.options {
+  display: none;
+  background: #39CCCC;
+  overflow: hidden;
+
+  &::before {
+    content: " ";
+    box-shadow: 0 2px 10px -1px rgba(0, 0, 0, 0.5);
+    display: block;
+    height: 5px;
+    position: relative;
+    top: -5px;
+  }
+
+  &::after {
+    content: " ";
+    box-shadow: 0 -2px 10px -1px rgba(0, 0, 0, 0.5);
+    display: block;
+    height: 5px;
+    position: relative;
+    top: 5px;
+  }
+
+  h2 {
+    margin: 0;
+  }
+}
+
+ul {
+  margin-top: 10px;
+}
+
+.toggle-settings {
+  font-size: 70%;
+  color: black;
+  margin: 13px 0 0 10px;
+  float: right;
+}
+
+.media-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.19) 0 0 8px 0;
+
+  .media-item {
+    flex: 0 0 100%;
+    padding: 5px 10px;
+    background: #fefff9;
+    color: #363636;
+
+    border: none;
+    border-radius: 0;
+
+    h4 {
+      margin: 0;
+    }
+
+    .watchlist-button {
+
+      &.added {
+        background-color: #acca72;
+        border: none;
+      }
+    }
+  }
+
+  .media-item + .media-item {
+    border-top: 1px solid #D7DBDD;
+  }
 }
