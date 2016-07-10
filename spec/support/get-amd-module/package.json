@@ -1,0 +1,9 @@
+{
+  "name": "get-amd-module",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./sync-load-transpiled-amd.js",
+  "devDependencies": {
+    "requirejs": "2.2.0"
+  }
+}
