@@ -30,17 +30,6 @@ define(() => {
     return text.split('-').map(capitalize).join(' ');
   }
 
-  function throttle(fn, minTime = 1000) {
-    let called = null;
-    return (...data) => {
-      const now = new Date().getDate();
-      if (!called || called + minTime < now) {
-        called = now;
-        fn.apply(null, data);
-      }
-    }
-  }
-
   function formatNumber(number) {
     const chars = number.toString().split('');
     const mirrorIndex = chars.length - 1;
@@ -49,13 +38,26 @@ define(() => {
     });
   }
 
+  const validateObject = schema => object => {
+    return Object.keys(schema).every(key => {
+      if (typeof schema[key] === 'object') {
+        if (typeof schema[key] !== typeof object[key]) {
+          return false;
+        }
+        return validateObject(schema[key])(object[key] || {});
+      } else {
+        return typeof object[key] === schema[key];
+      }
+    });
+  };
+
   return {
     mirror,
     removeFromArrayByID,
     objectWithoutUndefined,
     capitalize,
     humanize,
-    throttle,
     formatNumber,
+    validateObject,
   };
 });

@@ -20,9 +20,9 @@ define([
       return (
         <div class="app">
           <div class="container">
-            <h1 class="title">
-              Media list application
-              <a href="#" class="toggle-settings"><i class="fa fa-cog"/></a>
+            <h1 class="title clearfix">
+              <span class="alignleft">Media list application</span>
+              <a href="#" class="toggle-settings alignright"><i class="fa fa-cog"/></a>
             </h1>
           </div>
           <PollingOption pollingInterval={appState.pollingInterval}/>
