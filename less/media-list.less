@@ -1,28 +1,60 @@
 @import "colors.less";
 
-.media-list {
-  list-style: none;
+ul.media-list {
   display: flex;
   flex-wrap: wrap;
+  list-style: none;
   padding: 0;
   border-radius: 4px;
   overflow: hidden;
   border: 1px solid @grey;
   margin-top: 40px;
 
-  .media-item {
-    padding: 5px 10px;
+  & > li:nth-child(even) {
+    border-left: 1px solid @grey;
+  }
+
+  & > li:nth-child(n+3) {
+    border-top: 1px solid @grey;
+  }
+
+  @media (max-width: 700px) {
+    & > li.media-item:nth-child(even) {
+      border-left: none;
+    }
+
+    & > li.media-item:nth-child(n+2) {
+      border-top: 1px solid @grey;
+    }
+
+  }
+
+  li.media-item {
+    padding: 2%;
+    flex-grow: 1;
+    flex-basis: 40%;
+
+    @media (max-width: 700px) {
+      & {
+        flex: 1 80%;
+      }
+    }
+
     background: @light;
-    border: none;
     border-radius: 0;
     position: relative;
+    width: 100%;
 
-    h4 {
-      margin: 0;
+    h3, p {
+      margin: 0 0 10px;
+    }
+
+    h3 {
+      text-transform: capitalize;
     }
 
     i.fa {
-      margin-right: 10px;
+      margin-right: 5px;
     }
 
     .tags {
@@ -55,26 +87,21 @@
       }
     }
 
-    .viewers {
-      position: absolute;
-      right: 20px;
-      bottom: 40px;
-    }
-
     .watchlist-button {
-      position: absolute;
-      right: 20px;
-      bottom: 20px;
+      min-width: 210px;
+      padding: 5px 10px;
+      background: @light;
+      font-size: 100%;
+      border: 1px solid grey;
+      border-radius: 4px;
+      cursor: pointer;
 
       &.added {
         background-color: @teal;
-        border: none;
+        border-color: @teal;
+        color: white;
       }
     }
 
   }
-}
-
-.media-item + .media-item {
-  border-top: 1px solid @grey;
 }

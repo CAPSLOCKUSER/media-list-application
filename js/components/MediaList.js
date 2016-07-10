@@ -32,7 +32,7 @@ define([
         const addedA = findWatchlistItem(a.id).date;
         const addedB = findWatchlistItem(b.id).date;
 
-        return addedA - addedB;
+        return addedB - addedA;
       };
 
       const sortMediaItem = (a, b) => {

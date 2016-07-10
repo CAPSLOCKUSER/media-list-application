@@ -9,9 +9,7 @@ define(['lib/virtual-dom'], (VirtualDom) => {
       ErrorMessage.singleton = this;
     }
 
-    state = {
-      message: 'Something went wrong.',
-    };
+    shouldComponentUpdate() { return false; }
 
     static showMessage(message) {
       ErrorMessage.lastCalled = new Date().getTime();
@@ -32,7 +30,7 @@ define(['lib/virtual-dom'], (VirtualDom) => {
     render() {
       return (
         <div class="error-message">
-          {this.state.message}
+          Something went wrong.
         </div>
       );
     }

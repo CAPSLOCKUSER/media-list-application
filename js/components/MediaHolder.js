@@ -1,5 +1,6 @@
 define([
   'lib/virtual-dom',
+  'api',
   'components/MediaList',
   'components/ErrorMessage',
   'stores/store',
@@ -8,6 +9,7 @@ define([
   'constants',
 ], (
   VirtualDom,
+  { poll },
   MediaList,
   ErrorMessage,
   Store,
@@ -31,30 +33,27 @@ define([
       }
     }
 
-    poll = () => {
-      $.ajax({
-          url: this.props.url,
-          dataType: 'jsonp',
-          timeout: 5000,
-        })
-        .done(response => {
-          console.log('ajax success', response.length); // eslint-disable-line no-console
-          Store.dispatch(addToMediaList(response));
-        })
-        .fail(() => {
-          ErrorMessage.showMessage(`Polling error. Will continue.`)
-        })
-        .always(() => {
-          setTimeout(this.poll, this.state.pollingInterval);
-        });
-    };
-
     componentDidMount() {
       Store.subscribe(() => {
         this.setState(Store.getState());
       });
-      this.poll();
+
+      this.pollMediaList();
     }
+
+    pollMediaList = () => {
+      poll(this.props.url)
+        .then(list => {
+          console.log('ajax success', list.length);
+          Store.dispatch(addToMediaList(list));
+        })
+        .catch((wat) => {
+          ErrorMessage.showMessage('Polling error. Will continue.' + wat);
+        })
+        .then(() => {
+          setTimeout(() => this.pollMediaList(this.props.url), this.state.pollingInterval);
+        });
+    };
 
     render() {
       return (

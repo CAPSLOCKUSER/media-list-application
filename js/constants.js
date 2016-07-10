@@ -1,4 +1,4 @@
-define(['lib/Utils'], ({ mirror }) => {
+define(['lib/utils'], ({ mirror }) => {
   const SORTABLE_PROPERTIES = ['id', 'title', 'description', 'viewers'];
   const FILTER_TYPES = ['none', 'live-channel', 'offline-channel', 'video'];
   const ACTION_TYPES = mirror({

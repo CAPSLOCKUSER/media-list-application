@@ -16,8 +16,9 @@ define([
 
     render() {
       const { isAdded } = this.props;
+      const addedClass = isAdded ? 'watchlist-button added' : 'watchlist-button';
       return (
-        <button class={isAdded ? 'watchlist-button added' : 'watchlist-button'}>
+        <button class={`${addedClass} ${this.props.class}`}>
           {isAdded ? 'Remove from watchlist' : 'Add to watchlist'}
         </button>
       );
