@@ -1,4 +1,4 @@
-define(['lib/utils'], ({ validateObject }) => {
+define(['jquery', 'lib/utils'], ($, { validateObject }) => {
 
   function checkResponseShape(list) {
     if (!Array.isArray(list)) {
@@ -31,7 +31,7 @@ define(['lib/utils'], ({ validateObject }) => {
         })
         .then(data => {
           checkResponseShape(data);
-          const correctList = data.filter(object => validator);
+          const correctList = data.filter(validator);
           resolve(correctList);
         }, reject);
     });
