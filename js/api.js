@@ -1,9 +1,7 @@
 define(['jquery', 'lib/utils'], ($, { validateObject }) => {
 
-  function checkResponseShape(list) {
-    if (!Array.isArray(list)) {
-      throw new Error('Invalid data response from server');
-    }
+  function isResponseInCorrectShape(data) {
+    return Array.isArray(data);
   }
 
   const validator = validateObject({
@@ -30,7 +28,10 @@ define(['jquery', 'lib/utils'], ($, { validateObject }) => {
           timeout: 5000,
         })
         .then(data => {
-          checkResponseShape(data);
+          if (!isResponseInCorrectShape(data)) {
+            reject('Server response is not an array');
+            return;
+          }
           const correctList = data.filter(validator);
           resolve(correctList);
         }, reject);
