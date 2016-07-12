@@ -1,10 +1,11 @@
 define([
+  'jquery',
   'lib/virtual-dom',
   'stores/store',
   'actions/media-list',
   'constants',
   'lib/utils',
-], (VirtualDom, Store, { filterMediaList }, { FILTER_TYPES }, { humanize }) => {
+], ($, VirtualDom, Store, { filterMediaList }, { FILTER_TYPES }, { humanize }) => {
 
   class Filter extends VirtualDom.Component {
 

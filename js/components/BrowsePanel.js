@@ -1,11 +1,12 @@
 define([
+  'jquery',
   'lib/virtual-dom',
   'actions/media-list',
   'stores/store',
   'components/Filter',
   'components/Sorter',
   'lib/utils',
-], (VirtualDom, MediaListActions, Store, Filter, Sorter, { objectWithoutUndefined }) => {
+], ($, VirtualDom, MediaListActions, Store, Filter, Sorter, { objectWithoutUndefined }) => {
 
   class BrowsePanel extends VirtualDom.Component {
 

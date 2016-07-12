@@ -1,4 +1,4 @@
-define(['lib/virtual-dom'], (VirtualDom) => {
+define(['jquery', 'lib/virtual-dom'], ($, VirtualDom) => {
 
   const displayInterval = 3000;
 

@@ -1,11 +1,12 @@
 define([
+  'jquery',
   'lib/virtual-dom',
   'components/MediaHolder',
   'components/PollingOption',
   'components/BrowsePanel',
   'components/ErrorMessage',
   'stores/store',
-], (VirtualDom, MediaHolder, PollingOption, BrowsePanel, ErrorMessage, Store) => {
+], ($, VirtualDom, MediaHolder, PollingOption, BrowsePanel, ErrorMessage, Store) => {
 
   class App extends VirtualDom.Component {
     componentDidMount() {

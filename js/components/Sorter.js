@@ -1,10 +1,11 @@
 define([
+  'jquery',
   'constants',
   'lib/virtual-dom',
   'stores/store',
   'actions/media-list',
   'lib/utils'
-], ({ SORTABLE_PROPERTIES }, VirtualDom, Store, { sortMediaList }, { capitalize }) => {
+], ($, { SORTABLE_PROPERTIES }, VirtualDom, Store, { sortMediaList }, { capitalize }) => {
 
   class Sorter extends VirtualDom.Component {
 

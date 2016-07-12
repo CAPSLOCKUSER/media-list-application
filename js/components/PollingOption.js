@@ -1,9 +1,10 @@
 define([
+  'jquery',
   'constants',
   'lib/virtual-dom',
   'stores/store',
   'actions/options',
-], ({ POLLING_OPTION, DEFAULT_POLLING }, VirtualDom, Store, { setPollInterval }) => {
+], ($, { POLLING_OPTION, DEFAULT_POLLING }, VirtualDom, Store, { setPollInterval }) => {
 
   class PollingOption extends VirtualDom.Component {
 

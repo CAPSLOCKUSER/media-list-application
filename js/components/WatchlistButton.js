@@ -1,8 +1,9 @@
 define([
+  'jquery',
   'lib/virtual-dom',
   'stores/store',
   'actions/watchlist',
-], (VirtualDom, Store, { addToWatchlist, removeFromWatchlist }) => {
+], ($, VirtualDom, Store, { addToWatchlist, removeFromWatchlist }) => {
 
   class WatchlistButton extends VirtualDom.Component {
 
