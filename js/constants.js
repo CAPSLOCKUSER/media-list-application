@@ -10,7 +10,7 @@ define(['lib/utils'], ({ mirror }) => {
     'REMOVE_FROM_WATCHLIST': null,
     'SET_POLL_INTERVAL': null,
   });
-  const STORAGE_ID = 'MEDIA_LIST_APP_STORAGE';
+  const STORAGE_ID = 'MEDIA_LIST_APP_STORAGE_2332323422as34';
   const POLLING_OPTION = [
     { interval: 1500, name: 'Very fast' },
     { interval: 3000, name: 'Fast' },
