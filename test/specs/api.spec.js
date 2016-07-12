@@ -1,33 +1,76 @@
-const getAMD = require('get-amd-module');
+define(['api', 'sample-response.js'], (Api, SampleResponse) => {
 
-describe('Api', () => {
-  let Api;
+  describe('Api', () => {
+    const { poll } = Api;
 
-  beforeEach(() => {
-    Api = getAMD('api');
-  });
+    describe('reject', () => {
+      let result;
 
-  xdescribe('poll', () => {
+      beforeEach((done) => {
+        spyOn($, 'ajax').and.callFake(() => {
+          const d = $.Deferred();
+          d.resolve({});
+          return d.promise();
+        });
 
-    afterEach(() => {
-      $.ajax.restore();
+        poll('/foo/bar')
+          .then(() => {
+            throw new Error('this should not happen, when response isn`t an array');
+          })
+          .catch(error => {
+            result = error;
+            done();
+          });
+      });
+
+      it('should reject promise, if server response isn`t an array', () => {
+        expect(result).toEqual('Server response is not an array');
+      });
     });
 
-    it('makes a GET request for todo items', () => {
-      /*const { poll } = Api;
-      sinon.stub($, 'ajax');
-      //getTodos(42, sinon.spy());
-      poll('/foo/bar')
-        .then(list => {
+    describe('accept', () => {
+      let result;
 
-        })
-        .catch(() => {
+      beforeEach((done) => {
+        spyOn($, 'ajax').and.callFake(() => {
+          const d = $.Deferred();
+          d.resolve(SampleResponse);
+          return d.promise();
+        });
 
-        })
-        .then(() => {
+        poll('/foo/bar')
+          .then(list => {
+            result = list;
+            done();
+          })
+          .catch(() => {
+            throw new Error('should not throw, when response is an array');
+          });
+      });
 
-        });*/
-      assert($.ajax.calledWithMatch({ url: "/todo/42/items" }));
+      it('should return with an array', () => {
+        expect(Array.isArray(result)).toBe(true);
+      });
+
+      it('should filter out the incorrect array elements', () => {
+        const filteredResponse = [{
+          "id": 142012,
+          "type": "recorded",
+          "isLive": false,
+          "title": "esse incididunt culpa aute mollit ex",
+          "description": "Magna amet reprehenderit sunt .\r\n",
+          "viewers": 1059569,
+          "picture": "http:\/\/placehold.it\/32x32",
+          "location": {
+            "country": "Tajikistan",
+            "city": "Farmers",
+            "coordinates": { "latitude": -4.793548, "longitude": 138.265869 }
+          },
+          "labels": ["proident", "amet", "dolor", "aliquip"]
+        }];
+        expect(Array.isArray(result)).toEqual(true);
+        expect(result).toEqual(filteredResponse);
+      });
     });
   });
 });
