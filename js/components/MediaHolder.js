@@ -47,8 +47,9 @@ define([
           console.log('ajax success', list.length);
           Store.dispatch(addToMediaList(list));
         })
-        .catch((wat) => {
-          ErrorMessage.showMessage('Polling error. Will continue.' + wat);
+        .catch((error) => {
+          console.error('Error at polling:', error);
+          ErrorMessage.showMessage('Polling error. Will continue.');
         })
         .then(() => {
           setTimeout(() => this.pollMediaList(this.props.url), this.state.pollingInterval);
