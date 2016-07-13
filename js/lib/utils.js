@@ -8,7 +8,7 @@ define(() => {
     }, {});
   }
 
-  function removeFromArrayByID(array, id) {
+  function filterFromArrayByID(array, id) {
     return array.filter(({ id: otherID }) => otherID !== id);
   }
 
@@ -22,8 +22,12 @@ define(() => {
     return result;
   }
 
-  function capitalize(word) {
+  function firstLetterUppercase(word) {
     return word[0].toUpperCase() + word.slice(1);
+  }
+
+  function capitalize(text) {
+    return text.split(' ').map(firstLetterUppercase).join(' ');
   }
 
   function humanize(text) {
@@ -53,8 +57,9 @@ define(() => {
 
   return {
     mirror,
-    removeFromArrayByID,
+    filterFromArrayByID,
     objectWithoutUndefined,
+    firstLetterUppercase,
     capitalize,
     humanize,
     formatNumber,

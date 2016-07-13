@@ -1,7 +1,7 @@
 define([
   'constants',
   'lib/utils'
-], ({ ACTION_TYPES: at }, { removeFromArrayByID }) => {
+], ({ ACTION_TYPES: at }, { filterFromArrayByID }) => {
 
   return getInitialState => (state = getInitialState(), action = {}) => {
     switch (action.type) {
@@ -34,7 +34,7 @@ define([
         };
 
       case at.ADD_TO_WATCHLIST:
-        const filteredWatchlist = removeFromArrayByID(state.watchlist || [], action.id);
+        const filteredWatchlist = filterFromArrayByID(state.watchlist || [], action.id);
         return {
           ...state,
           watchlist: filteredWatchlist.concat([{ id: action.id, date: action.date }]),
@@ -43,7 +43,7 @@ define([
       case at.REMOVE_FROM_WATCHLIST:
         return {
           ...state,
-          watchlist: removeFromArrayByID(state.watchlist || [], action.id),
+          watchlist: filterFromArrayByID(state.watchlist || [], action.id),
         };
 
       case at.SET_POLL_INTERVAL:
