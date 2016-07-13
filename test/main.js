@@ -21,6 +21,7 @@ require(['jasmine-boot'], () => {
   require([
     '../test/specs/utils.spec',
     '../test/specs/api.spec',
+    '../test/specs/MediaList.spec',
   ], () => {
     window.onload();
   });
