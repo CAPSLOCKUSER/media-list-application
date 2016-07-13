@@ -19,11 +19,11 @@ require.config({
 
 require(['jasmine-boot'], () => {
   require([
-    '../test/specs/utils.spec',
-    '../test/specs/api.spec',
-    '../test/specs/MediaList.spec',
-    '../test/specs/virtual-dom.spec',
-    '../test/specs/persistence.spec',
+    'test/specs/utils.spec',
+    'test/specs/api.spec',
+    'test/specs/MediaList.spec',
+    'test/specs/virtual-dom.spec',
+    'test/specs/persistence.spec',
   ], () => {
     window.onload();
   });

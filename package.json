@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "rimraf build && npm run build:js && npm run build:less",
-    "build:js": "babel js -d build --source-maps",
+    "build:js": "babel js -d build --source-maps && babel test -d build/test --source-maps",
     "build:less": "lessc --source-map less/main.less build/style.css && npm run autoprefix",
     "autoprefix": "autoprefixer-cli build/style.css",
     "postinstall": "npm run build",

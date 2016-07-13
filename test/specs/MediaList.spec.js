@@ -1,4 +1,4 @@
-define(['components/MediaList', 'sample-big-response.js'], (MediaList, SampleResponse) => {
+define(['components/MediaList', 'test/sample-big-response'], (MediaList, SampleResponse) => {
 
   describe('MediaList Component', () => {
     let mediaList;

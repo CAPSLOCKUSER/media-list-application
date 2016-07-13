@@ -1,4 +1,4 @@
-define(['api', 'sample-small-response.js'], (Api, SampleResponse) => {
+define(['api', 'test/sample-small-response'], (Api, SampleResponse) => {
 
   describe('Api', () => {
     const { poll } = Api;
