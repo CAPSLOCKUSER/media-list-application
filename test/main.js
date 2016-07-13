@@ -23,6 +23,7 @@ require(['jasmine-boot'], () => {
     '../test/specs/api.spec',
     '../test/specs/MediaList.spec',
     '../test/specs/virtual-dom.spec',
+    '../test/specs/persistence.spec',
   ], () => {
     window.onload();
   });
