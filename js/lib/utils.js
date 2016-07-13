@@ -23,14 +23,17 @@ define(() => {
   }
 
   function firstLetterUppercase(word) {
+    if (word.length === 0) return word;
     return word[0].toUpperCase() + word.slice(1);
   }
 
   function capitalize(text) {
+    if (text.length === 0) return text;
     return text.split(' ').map(firstLetterUppercase).join(' ');
   }
 
   function humanize(text) {
+    if (text.length === 0) return text;
     return text.split('-').map(capitalize).join(' ');
   }
 
