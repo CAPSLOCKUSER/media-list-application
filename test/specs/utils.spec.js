@@ -16,23 +16,85 @@ define(['lib/utils'], (Utils) => {
       });
     });
 
-    describe('removeFromArrayByID', () => {
-      it('should remove element by ID');
-      it('should not modify the input array');
-      it('should not remove item, if it`s actually the ID');
-      it('should not modify the array if ID isn`t present');
+    describe('filterFromArrayByID', () => {
+      it('should filter out element by ID', () => {
+        const { filterFromArrayByID } = Utils;
+        const array = [
+          { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }
+        ];
+        expect(filterFromArrayByID(array, 3)).toEqual([
+          { id: 1 }, { id: 2 }, { id: 4 }, { id: 5 }
+        ]);
+      });
+      it('should not modify the input array', () => {
+        const { filterFromArrayByID } = Utils;
+        const array = [{ id: 4 }, { id: 5 }];
+        filterFromArrayByID(array, 5);
+        expect(array).toEqual([{ id: 4 }, { id: 5 }]);
+      });
+      it('should only test for ID property, not if the element === ID', () => {
+        const { filterFromArrayByID } = Utils;
+        const array = [1, 2, 3];
+        expect(filterFromArrayByID(array, 2)).toEqual([1, 2, 3]);
+      });
+      it('should not modify the array if ID isn`t present', () => {
+        const { filterFromArrayByID } = Utils;
+        const array = [
+          { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }
+        ];
+        expect(filterFromArrayByID(array, 42)).toEqual([
+          { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }
+        ]);
+      });
     });
 
     describe('objectWithoutUndefined', () => {
-      it('should remove the properties with the value `undefined`');
-      it('should not modify the input object');
-      it('should not touch `null` values');
-      it('should leave every non-undefined values untouched');
+      it('should remove the properties with the value `undefined`', () => {
+        const { objectWithoutUndefined } = Utils;
+        expect(objectWithoutUndefined({ foo: 4, baz: false, bar: undefined })).toEqual({ foo: 4, baz: false });
+        expect(objectWithoutUndefined({ foo: 5 })).toEqual({ foo: 5 });
+        expect(objectWithoutUndefined({})).toEqual({});
+        expect(objectWithoutUndefined({ a: undefined, b: undefined })).toEqual({});
+      });
+      it('should not modify the input object', () => {
+        const { objectWithoutUndefined } = Utils;
+        const obj = {
+          foo: 'aaa',
+          bar: undefined,
+          baz: 'bbb'
+        };
+        objectWithoutUndefined(obj);
+        expect(obj).toEqual({
+          foo: 'aaa',
+          bar: undefined,
+          baz: 'bbb'
+        });
+      });
+      it('should leave `null` values', () => {
+        const { objectWithoutUndefined } = Utils;
+        expect(objectWithoutUndefined({ a: null })).toEqual({ a: null });
+      });
+    });
+
+    describe('firstLetterUppercase', () => {
+      it('should capitalize the first letter of given string', () => {
+        const { firstLetterUppercase } = Utils;
+        expect(firstLetterUppercase('foobar')).toBe('Foobar');
+        expect(firstLetterUppercase('')).toBe('');
+      });
+      it('should not capitalise other word beginnings', () => {
+        const { firstLetterUppercase } = Utils;
+        expect(firstLetterUppercase('foobar bar baz')).toBe('Foobar bar baz');
+      });
     });
 
     describe('capitalize', () => {
-      it('should convert string`s first letter uppercase');
-      it('should not capitalise other word beginnings');
+      it('should capitalize given text', () => {
+        const { capitalize } = Utils;
+        expect(capitalize('foo bar bar foobar')).toBe('Foo Bar Bar Foobar');
+        expect(capitalize('Foo')).toBe('Foo');
+        expect(capitalize('')).toBe('');
+      });
     });
 
     describe('humanize', () => {
