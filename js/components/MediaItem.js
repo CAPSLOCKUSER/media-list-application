@@ -12,10 +12,6 @@ define([
 
     render() {
       const { id, title, description, viewers, isLive, watchlist, location, labels } = this.props;
-      if (!location) {
-        console.error('what is this')
-        debugger;
-      }
       const { city, country } = location;
       const isAdded = !!watchlist.find(({ id: other }) => id === other);
       return (
@@ -29,7 +25,6 @@ define([
               </span>
             </p>
           ): null}
-
           <div class="clearfix">
             <p class="location alignleft">
               <i class="fa fa-map-marker" aria-hidden="true" />
